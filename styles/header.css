@@ -61,6 +61,9 @@ header img {
   display: none;
   transition: 1s;
 }
+header span {
+  color: #f06c64;
+}
 .menu-icon > span {
   font-size: 25px;
   color: #ffffff;
