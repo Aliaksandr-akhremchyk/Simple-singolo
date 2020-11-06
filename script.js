@@ -14,7 +14,7 @@ MENU.addEventListener('click', (event) =>{
 // Menu burger
 const MENUC = document.getElementById('button');
 MENUC.addEventListener('click', () =>{
-    if(MENUC.getAttribute('class') == 'rotate') {
+    if(MENUC.classList.contains('rotate')) {
         document.getElementById('overlay-tint').classList.add('hidden');
         document.getElementById('burger-menu').classList.remove('move');
         document.getElementById('menu-icon').classList.remove('doun');
@@ -30,7 +30,7 @@ MENUC.addEventListener('click', () =>{
 });
 
 window.addEventListener(`resize`, event => {
-    if(window.innerWidth > 768 && (MENUC.getAttribute('class') == 'rotate')) {
+    if(window.innerWidth > 768 && MENUC.classList.contains('rotate')) {
         document.getElementById('overlay-tint').classList.add('hidden');
         document.getElementById('burger-menu').classList.remove('move');
         document.getElementById('menu-icon').classList.remove('doun');
@@ -114,7 +114,7 @@ const SLIDE1 = document.getElementById('slide-1');
 const SLIDE2 = document.getElementById('slide-2');
 
 function clickRight (){
-    if(SLIDE1.getAttribute('class').indexOf('top', 0) > 0) {
+    if(SLIDE1.classList.contains('top')) {
         SLIDE1.classList.remove('top');
         SLIDE2.classList.add('left');
         SLIDE2.classList.add('top');
@@ -166,9 +166,5 @@ LEFT.addEventListener('click', () =>{
 const PHONEV = document.getElementById('phone-vertical');
 const DISPLAY = document.getElementById('vertical-display');
 PHONEV.addEventListener('click', () =>{
-    if(DISPLAY.getAttribute('class').indexOf('hidden', 0) > 0) {
-        DISPLAY.classList.remove('hidden');
-    } else {
-        DISPLAY.classList.add('hidden');
-    }
+        DISPLAY.classList.toggle('hidden');
 });
