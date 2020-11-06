@@ -118,6 +118,7 @@ function clickRight (){
         SLIDE1.classList.remove('top');
         SLIDE2.classList.add('left');
         SLIDE2.classList.add('top');
+        timeoutSlider();
         setTimeout(() => { 
             SLIDE1.classList.remove('left');
             SLIDE1.classList.remove('right');}, 1500);
@@ -125,6 +126,7 @@ function clickRight (){
             SLIDE2.classList.remove('top');
             SLIDE1.classList.add('left');
             SLIDE1.classList.add('top');
+            timeoutSlider();
             setTimeout(() => { 
                 SLIDE2.classList.remove('right');
                 SLIDE2.classList.remove('left'); }, 1500);
@@ -136,6 +138,7 @@ function clickLeft (){
         SLIDE1.classList.remove('top');
         SLIDE2.classList.add('right');
         SLIDE2.classList.add('top');
+        timeoutSlider();
         setTimeout(() => { 
             SLIDE1.classList.remove('left');
             SLIDE1.classList.remove('right');}, 1500);
@@ -143,24 +146,33 @@ function clickLeft (){
             SLIDE2.classList.remove('top');
             SLIDE1.classList.add('right');
             SLIDE1.classList.add('top');
+            timeoutSlider();
             setTimeout(() => { 
                 SLIDE2.classList.remove('right');
                 SLIDE2.classList.remove('left'); }, 1500);
         }
 };
 
+let timeoutSliderBool = true;
 let autoClick = setInterval(clickRight, 7000);
 RIGHT.addEventListener('click', () =>{
+    if(!timeoutSliderBool) return;
     clearInterval(autoClick);
     clickRight();
     autoClick = setInterval(clickRight, 7000);
 });
 
 LEFT.addEventListener('click', () =>{
+    if(!timeoutSliderBool) return;
     clearInterval(autoClick);
     clickLeft();
     autoClick = setInterval(clickLeft, 7000);
 });
+
+function timeoutSlider() {
+    timeoutSliderBool = false;
+    setTimeout(() => timeoutSliderBool = true, 1500);
+}
 
 // Display phone active
 const PHONEV = document.getElementById('phone-vertical');
