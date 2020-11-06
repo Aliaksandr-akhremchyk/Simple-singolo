@@ -15,16 +15,23 @@ html {
 }
 body {
   font-family: "Lato", verdana, sans-serif;
+  overflow-x: hidden;
 }
-
+main {
+  margin-top: 95px;
+}
 #anchor2,
+#anchor1 {
+  scroll-margin-top: 95px;
+}
+/* #anchor2,
 #anchor1 {
   position: absolute;
   bottom: -1px;
   width: 5px;
   margin: auto;
   height: 89px;
-}
+} */
 
 @media screen and (max-width: 1019px) {
   .grid-service {
@@ -69,7 +76,7 @@ body {
     left: 10.98%;
     top: 9.3%;
   }
-  .phone-horizomtal {
+  .phone-horizontal {
     position: absolute;
     width: 47.35%;
     height: 40.3%;
@@ -143,11 +150,15 @@ body {
     transition: 1s;
   }
   .header,
-  .a1,
-  #anchor2,
-  #anchor1,
-  header {
+   header {
     height: 71px;
+  }
+  #anchor2,
+  #anchor1 {
+  scroll-margin-top: 71px;
+}
+  main {
+    margin-top: 71px;
   }
 }
 @media screen and (max-width: 375px) {
