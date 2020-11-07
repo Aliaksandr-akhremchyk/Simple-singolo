@@ -20,18 +20,7 @@ body {
 main {
   margin-top: 95px;
 }
-#anchor2,
-#anchor1 {
-  scroll-margin-top: 95px;
-}
-/* #anchor2,
-#anchor1 {
-  position: absolute;
-  bottom: -1px;
-  width: 5px;
-  margin: auto;
-  height: 89px;
-} */
+
 
 @media screen and (max-width: 1019px) {
   .grid-service {
@@ -153,12 +142,8 @@ main {
    header {
     height: 71px;
   }
-  #anchor2,
-  #anchor1 {
-  scroll-margin-top: 71px;
-}
   main {
-    margin-top: 71px;
+    margin-top: 76px;
   }
 }
 @media screen and (max-width: 375px) {
