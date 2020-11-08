@@ -1,6 +1,7 @@
 // Menu active
 const MENU = document.getElementById('navmain');
 const DIVS = document.querySelectorAll('main>div');
+const SLIDERINTERVAL = 7000;
 
 MENU.addEventListener('click', (event) =>{
     MENU.querySelectorAll('a').forEach(a => a.classList.remove('active'));
@@ -100,14 +101,12 @@ function clickRight (){
         SLIDE1.classList.remove('top');
         SLIDE2.classList.add('left');
         SLIDE2.classList.add('top');
-        timeoutSlider();
-        setTimeout(() => removeLeftRightClassFromSlide(), 1500);
+        timeoutSliderBool = false;
         } else {
             SLIDE2.classList.remove('top');
             SLIDE1.classList.add('left');
             SLIDE1.classList.add('top');
-            timeoutSlider();
-            setTimeout(() => removeLeftRightClassFromSlide(), 1500);
+            timeoutSliderBool = false;
         }
 };
 
@@ -116,16 +115,24 @@ function clickLeft (){
         SLIDE1.classList.remove('top');
         SLIDE2.classList.add('right');
         SLIDE2.classList.add('top');
-        timeoutSlider();
-        setTimeout(() => removeLeftRightClassFromSlide(), 1500);
+        timeoutSliderBool = false;
         } else {
             SLIDE2.classList.remove('top');
             SLIDE1.classList.add('right');
             SLIDE1.classList.add('top');
-            timeoutSlider();
-            setTimeout(() => removeLeftRightClassFromSlide(), 1500);
+            timeoutSliderBool = false;
         }
 };
+
+SLIDE1.addEventListener("transitionend", () =>{
+    removeLeftRightClassFromSlide();
+    timeoutSliderBool = true;
+});
+SLIDE2.addEventListener("transitionend", () =>{
+    removeLeftRightClassFromSlide();
+    timeoutSliderBool = true;
+});
+
 function removeLeftRightClassFromSlide (){
     SLIDE1.classList.remove('left');
     SLIDE1.classList.remove('right');
@@ -134,25 +141,20 @@ function removeLeftRightClassFromSlide (){
 }
 
 let timeoutSliderBool = true;
-let autoClick = setInterval(clickRight, 7000);
+let autoClick = setInterval(clickRight, SLIDERINTERVAL);
 RIGHT.addEventListener('click', () =>{
     if(!timeoutSliderBool) return;
     clearInterval(autoClick);
     clickRight();
-    autoClick = setInterval(clickRight, 7000);
+    autoClick = setInterval(clickRight, SLIDERINTERVAL);
 });
 
 LEFT.addEventListener('click', () =>{
     if(!timeoutSliderBool) return;
     clearInterval(autoClick);
     clickLeft();
-    autoClick = setInterval(clickLeft, 7000);
+    autoClick = setInterval(clickLeft, SLIDERINTERVAL);
 });
-
-function timeoutSlider() {
-    timeoutSliderBool = false;
-    setTimeout(() => timeoutSliderBool = true, 1500);
-}
 
 // Display phone active
 const PHONEV = document.getElementById('phone-vertical');
