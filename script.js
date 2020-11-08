@@ -6,7 +6,7 @@ MENU.addEventListener('click', (event) =>{
     MENU.querySelectorAll('a').forEach(a => a.classList.remove('active'));
     event.target.classList.add('active');
 
-    let scrollshift = (window.innerWidth > 767) ? 95 : 76;
+    let scrollshift = document.querySelector('header').offsetHeight;
     DIVS.forEach((el) => {
         if (el.id === event.target.id) window.scrollTo(0, el.offsetTop - scrollshift)
     });
@@ -17,9 +17,7 @@ MENU.addEventListener('click', (event) =>{
 // Menu burger
 const MENUC = document.getElementById('button');
 
-MENUC.addEventListener('click', () =>{
-    toggleBurger();
-});
+MENUC.addEventListener('click', () => toggleBurger());
 
 function toggleBurger(){
     document.getElementById('h1').classList.toggle('hidden');
@@ -45,7 +43,7 @@ window.addEventListener(`resize`, event => {
 document.addEventListener('scroll', onScroll);
 function onScroll() {
     const POS = window.scrollY;
-    let heightHeader = (window.innerWidth > 767) ? 95 : 76;
+    let heightHeader = document.querySelector('header').offsetHeight;
 
     DIVS.forEach((el) => {
         if(el.offsetTop - heightHeader <= POS && (el.offsetTop - heightHeader + el.offsetHeight) > POS){
@@ -103,39 +101,37 @@ function clickRight (){
         SLIDE2.classList.add('left');
         SLIDE2.classList.add('top');
         timeoutSlider();
-        setTimeout(() => { 
-            SLIDE1.classList.remove('left');
-            SLIDE1.classList.remove('right');}, 1500);
+        setTimeout(() => removeLeftRightClassFromSlide(), 1500);
         } else {
             SLIDE2.classList.remove('top');
             SLIDE1.classList.add('left');
             SLIDE1.classList.add('top');
             timeoutSlider();
-            setTimeout(() => { 
-                SLIDE2.classList.remove('right');
-                SLIDE2.classList.remove('left'); }, 1500);
+            setTimeout(() => removeLeftRightClassFromSlide(), 1500);
         }
 };
 
 function clickLeft (){
-    if(SLIDE1.getAttribute('class').indexOf('top', 0) > 0) {
+    if(SLIDE1.classList.contains('top')) {
         SLIDE1.classList.remove('top');
         SLIDE2.classList.add('right');
         SLIDE2.classList.add('top');
         timeoutSlider();
-        setTimeout(() => { 
-            SLIDE1.classList.remove('left');
-            SLIDE1.classList.remove('right');}, 1500);
+        setTimeout(() => removeLeftRightClassFromSlide(), 1500);
         } else {
             SLIDE2.classList.remove('top');
             SLIDE1.classList.add('right');
             SLIDE1.classList.add('top');
             timeoutSlider();
-            setTimeout(() => { 
-                SLIDE2.classList.remove('right');
-                SLIDE2.classList.remove('left'); }, 1500);
+            setTimeout(() => removeLeftRightClassFromSlide(), 1500);
         }
 };
+function removeLeftRightClassFromSlide (){
+    SLIDE1.classList.remove('left');
+    SLIDE1.classList.remove('right');
+    SLIDE2.classList.remove('right');
+    SLIDE2.classList.remove('left');
+}
 
 let timeoutSliderBool = true;
 let autoClick = setInterval(clickRight, 7000);
