@@ -61,26 +61,25 @@ function onScroll() {
 // Menu tab
 const TAB = document.getElementById('tab');
 const MIXED = document.getElementById('grid2');
-let arr1 = MIXED.querySelectorAll('img');
+let images = MIXED.querySelectorAll('img');
+let arrImages = Object.values(images);;
 
 TAB.querySelectorAll('li').forEach(el => {
     el.addEventListener('click', (event) =>{
         TAB.querySelectorAll('li').forEach(el => el.classList.remove('active'));
         event.target.classList.add('active');
         MIXED.querySelectorAll('img').forEach(el => el.remove());
-        
-        let arr2 = [];
-        let i = 0;    
-        while (i < arr1.length) {
-            var j = Math.floor(Math.random() * (arr1.length));
-            if (!arr2[j]){
-                arr2[j] = 1;
-                MIXED.prepend(arr1[j]);
-                ++i;
-            }
-        }
+        shuffle(arrImages);
+        arrImages.forEach(img => MIXED.prepend(img));
     });
 });
+
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
 
 // Border portfolio
 MIXED.querySelectorAll('img').forEach(el => {
